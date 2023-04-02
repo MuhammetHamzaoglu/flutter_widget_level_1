@@ -1,60 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
+import 'Basic_widget/container_sized.dart';
+import 'Basic_widget/text_view.dart';
 
 void main() {
-  debugPaintSizeEnabled = false; // Set to true for visual layout
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter layout demo',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Flutter layout demo'),
-        ),
-        body: Center(child: _buildImageColumn()),
-      ),
+      title: 'Selamlar',
+      debugShowCheckedModeBanner: false, // Debug yazısını kaldırır
+      theme: ThemeData.fallback(),
+      home: ContainerSizedBox(),
     );
   }
-
-  // #docregion column
-  Widget _buildImageColumn() {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.black26,
-      ),
-      child: Column(
-        children: [
-          _buildImageRow(1),
-          _buildImageRow(3),
-        ],
-      ),
-    );
-  }
-  // #enddocregion column
-
-  // #docregion row
-  Widget _buildDecoratedImage(int imageIndex) => Expanded(
-        child: Container(
-          decoration: BoxDecoration(
-            border: Border.all(width: 10, color: Colors.black38),
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
-          ),
-          margin: const EdgeInsets.all(4),
-          child: Image.asset('images/pic$imageIndex.jpg'),
-        ),
-      );
-
-  Widget _buildImageRow(int imageIndex) => Row(
-        children: [
-          _buildDecoratedImage(imageIndex),
-          _buildDecoratedImage(imageIndex + 1),
-        ],
-      );
-  // #enddocregion row
 }
